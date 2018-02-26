@@ -145,9 +145,10 @@ end
 
 #----------------------------------------------------------------------------------------------------------------
 #----------------------------------------------------------------------------------------------------------------
-
-source -v USDK/flasher/gdb_flasher.jlink
-source -v USDK/flasher/flash_file.jlink
+pwd 
+printf "arg 0 = %s\n", $arg0
+source -v tools/flash/gdb_flasher.jlink
+source -v tools/flash/flash_file.jlink
 InitJlink
 SystemInit
 SetClk166MHz
@@ -159,7 +160,7 @@ if $FirmwareSize == 0
  error "FirmwareSize = 0!"
 end
 FlasherInit
-FlasherLoad USDK/flasher/rtl8710_flasher.bin
+FlasherLoad tools/flash/rtl8710_flasher.bin
 if $Image1Size != 0
  printf "Write Image1 size %d to Flash addr 0x00000000:\n", $Image1Size
  #FlasherWrite $wr_flile 0 $Image1Size
